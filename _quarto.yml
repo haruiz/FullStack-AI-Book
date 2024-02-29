@@ -1,0 +1,27 @@
+project:
+  type: book
+  execute-dir: project
+  output-dir: docs/
+book:
+  title: "FullStack-AI Course"
+  author: "Henry A. Ruiz Guzman,PhD"
+  date: "2/20/2024"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - part: "Foundations" 
+      chapters:  
+        - foundations/system-design/intro.qmd
+        - foundations/terminals-intro/intro.ipynb
+        - foundations/python-intro/intro.ipynb
+    - summary.qmd
+    - references.qmd
+bibliography: references.bib
+format:
+  html:
+    theme: flatly
+  pdf:
+    documentclass: scrreprt
+
+
+
