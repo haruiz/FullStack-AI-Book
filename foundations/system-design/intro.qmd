@@ -168,6 +168,7 @@ So the question you probably have, how can Docker run containers on Windows and 
 
 **On macOS**, docker also utilizes a lightweight virtual machine to run a Linux kernel. Docker Desktop for Mac leverages macOS's native virtualization frameworks (such as Hypervisor.framework for Intel processors and the Virtualization framework for Apple silicon) to run this VM efficiently. This setup allows Docker containers to run in a Linux-like environment on Mac, with Docker Desktop handling the complexities of managing the VM.
 
+![Docker  on Linux and Windows](docker-linux-win.png)
 
 #### Docker components
 
@@ -182,6 +183,11 @@ Docker consists of several components that work together to provide its function
 - **Docker Hub:** This is a cloud-based repository for storing and sharing Docker Images. It provides a centralized location for developers to store and distribute their images, making it easy for others to find, download, and use them.
 - **Docker Compose:** This is a tool for defining and running multi-container Docker applications. With Docker Compose, you can define your application's services, networks, and volumes in a single file, and then start and stop all services from this file.
 
+#### Docker Hub
+
+Docker also provides a centralized repository, called the Docker Hub, where developers can store and share their containers with others. This makes it easy to find and reuse existing containers, and to collaborate with other developers on projects. Docker Hub provides a wide range of official and community-contributed containers, including base images, application images, and service images. It also provides features for managing and monitoring containers, such as versioning, tagging, and scanning. Docker Hub is widely used by developers, organizations, and cloud providers, and it provides a high level of visibility and control over the distribution of containers. We can use Docker Hub to store and share our containers, so our team members can easily access and use them.
+
+![Docker Hub](docker-ecosystem.png)
 
 #### How does Docker work?
 
@@ -189,6 +195,78 @@ Docker uses a client-server architecture, where the Docker client communicates w
 The Docker daemon is also responsible for managing the lifecycle of containers, including creating, starting, stopping, pausing, and deleting containers, as well as managing their resources, such as CPU, memory, and storage.
 
 ![Docker](docker.png)
+
+**Most common Docker commands**
+
+```bash
+# Pull an image from Docker Hub
+docker pull <image-name>
+
+# List all images on the system
+docker images
+
+# Run a container from an image
+docker run <image-name>
+
+# List all running containers
+docker ps
+
+# List all containers
+docker ps -a
+
+# Stop a running container
+docker stop <container-id>
+
+# Start a stopped container
+docker start <container-id>
+
+# Remove a container
+docker rm <container-id>
+
+# Remove an image
+docker rmi <image-name>
+```
+
+
+#### Running Multi-Container Applications
+
+One of the challenges of running multi-container applications is managing the dependencies and interactions between them. Docker Compose, Swarm and  Kubernetes they are all tools that can be used to define, configure, and run multi-container applications. 
+
+- **Docker Compose** is a tool for defining and running multi-container applications on a single host. It is easy to use and requires minimal setup, making it a popular choice for developers who want to quickly set up and test their applications locally. Docker Compose provides a simple and convenient way to define, configure, and run multi-container applications, but it is limited to a single host and does not provide the same level of scalability and resource management as Kubernetes.
+- **Kubernetes**, on the other hand, is a production-ready platform for deploying, scaling, and managing containerized applications. It provides a powerful and flexible architecture for managing multi-container applications at scale, and it includes features for automatic scaling, rolling updates, self-healing, and resource management. Kubernetes is designed for large, complex, and mission-critical applications, and it provides a high degree of availability and resilience.
+- **Docker Swarm** is a native clustering and orchestration tool for Docker. It allows you to create and manage a cluster of Docker hosts, and it provides features for scaling, load balancing, and service discovery. Docker Swarm is easy to use and integrates well with Docker, making it a good choice for developers who want to manage multi-container applications without the complexity of Kubernetes.
+
+```yaml
+version: '3'
+services:
+    frontend:
+        image: frontend:latest
+        ports:
+        - "80:80"
+        depends_on:
+        - backend
+    backend:
+        image: backend:latest
+        ports:
+        - "8080:8080"
+        environment:
+        - DATABASE_URL=postgres://user:password@db:5432/db
+    db:
+        image: postgres:latest
+        environment:
+        - POSTGRES_USER=user
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_DB=db
+networks:
+    default:
+        external:
+        name: my-network
+```
+
+
+{{<video https://www.youtube.com/watch?v=BE77h7dmoQU&t=604s&ab_channel=Honeypot>}}
+
+
 
 ## Scaling it to meet the demands of its users
 
