@@ -1,6 +1,9 @@
 # Introduction
 
-# Curriculum
+Machine Learning systems are not just the trained model but a combination of multiple components within a system that work together to solve a problem. These components include data collection, preprocessing, model training, evaluation, deployment, and monitoring. The development of ML systems is a complex task that requires the collaboration of different teams, including data scientists, software engineers, and operations teams. This course will discuss some of the technical aspects and challenges of designing, developing, and implementing ML models in production. 
+
+
+## Curriculum
 
 **Foundations**: This part of the course lays the groundwork for everything that follows. It delves into the essential theories and foundational knowledge necessary for constructing AI systems, including an introduction to AI and machine learning and covering the crucial mathematical and statistical theories needed to grasp these areas. Furthermore, it introduces the fundamentals of software engineering, cloud computing, and system architecture concepts related to designing and developing end-to-end ML systems. A  Python programming refresher will also be provided.
 
